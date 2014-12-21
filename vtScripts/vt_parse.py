@@ -114,14 +114,6 @@ def init():
     
     #pickle Queue to disk
     write_t.join()
-"""
-    rslt_list=[]
-    while not rsltq.empty():
-        rslt_list.append(rsltq.get())
-    fout=open(sys.argv[2],'wb')
-    pickle.dump(rslt_list,fout)
-    fout.close()
-"""
 
 if len(sys.argv)==5:
     creds=(sys.argv[3],sysargv[4]) #creds for the proxies

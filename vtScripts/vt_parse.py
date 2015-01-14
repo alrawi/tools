@@ -81,6 +81,7 @@ def dumpQ(stop_cnt=0):
         try:
             rcrd=rsltq.get(False)
             output.write(rcrd[0]+delim+json.dumps(rcrd[1])+nl)
+            wrt_cnt+=1
             print "writing successful"
         except:
             print "writing record failed"
@@ -116,7 +117,7 @@ def init():
     write_t.join()
 
 if len(sys.argv)==5:
-    creds=(sys.argv[3],sysargv[4]) #creds for the proxies
+    creds=(sys.argv[3],sys.argv[4]) #creds for the proxies
     ipq=Queue.Queue() #ip queue
     rsltq=Queue.Queue() #result queue
     delim='***$***' #delimiter for output data

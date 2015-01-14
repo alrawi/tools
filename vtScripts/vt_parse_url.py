@@ -43,7 +43,9 @@ def get_url(ip, loc=proxy_pnts[8]):
 
     try:
         #try request, proxies might be non-responsive
-        r=requests.get(base_url%(hashlib.sha256(ip).hexdigest()), verify=False,headers=headers,proxies=proxies,timeout=10) # perform get request 
+        if ip.endswith('.'):
+            ip=ip[:-1]
+        r=requests.get(base_url%(hashlib.sha256('http://'+ip+'/').hexdigest()), verify=False, headers=headers,proxies=proxies,timeout=10) # perform get request 
     except:
         #push ip back to work queue
         ipq.put(ip) #failed ip reprocess
@@ -83,11 +85,7 @@ def dumpQ(stop_cnt=0):
             rcrd=rsltq.get(False)
             output.write(rcrd[0]+delim+json.dumps(rcrd[1])+nl)
             wrt_cnt+=1
-            print "writing successful"
         except:
-            print "writing record failed"
-            print wrt_cnt
-            print stop_cnt
             time.sleep(5.0)
             continue
 

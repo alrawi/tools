@@ -57,15 +57,18 @@ def parse(ip,root=''):
     if root == '':
         rsltq.put((ip,{'sr':''}))
         return
-    detect_tag=root.findAll(id='scanning-results')[0].select('tbody')[0]
+    rslt=[]
+    detect_tag=root.findAll(id='scanning-results')
     if len(detect_tag)>0: # check if we have any detected tags
-        rslt=[]
-        for rows in detect_tag.findAll('tr'): # iterate on each detected section
-            tmp=[]
-            for elem in rows.findAll('td'):
-                tmp.append(elem.string)
-            rslt.append(tmp)
-        rsltq.put((ip,{'sr':rslt}))
+        detect_tag=detect_tag[0].select('tbody')
+        if len(detect_tag)>0:
+            detect_tag=detect_tag[0]
+            for rows in detect_tag.findAll('tr'): # iterate on each detected section
+                tmp=[]
+                for elem in rows.findAll('td'):
+                    tmp.append(elem.string)
+                rslt.append(tmp)
+    rsltq.put((ip,{'sr':rslt}))
 
 def work():
     while not ipq.empty():

@@ -345,8 +345,10 @@ dictTypeMap = {
     (2,5,4,6): "id-at-countryName",
     (2,5,4,7): "id-at-localityName",
     (2,5,4,8): "id-at-stateOrProvinceName",
+    (2,5,4,9): "id-at-streetAddress",
     (2,5,4,10): "id-at-organizationName",
     (2,5,4,11): "id-at-organizationalUnitName",
+    (2,5,4,17): "id-at-postalCode",
     (2,16,840,1,113730,1,1): "Netscape certificate type"
 }
 
